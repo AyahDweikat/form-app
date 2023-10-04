@@ -1,0 +1,7 @@
+.formCard{
+    display: flex;
+    width: 450px;
+    padding-top: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
