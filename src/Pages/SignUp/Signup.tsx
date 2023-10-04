@@ -24,12 +24,12 @@ const Signup = () => {
     return userName.match(regex);
   }
   const validatePassword =(password: string)=>{
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z0-9@_-]{6,24}$/;
+    const regex = /^(?=.*[@_-])(?=.*\d)[a-zA-Z0-9@_-]{6,24}$/;
     console.log(password.match(regex))
     return password.match(regex);
   }
   return (
-    <Box sx={{ width: "500px", backgroundColor:"#eeeeee", height:"100vh", m:"auto", p:"20px" }}>
+    <Box sx={{ width: "500px", backgroundColor:"#eeeeee", height:"700px", m:"auto", p:"20px" }}>
         <Typography
           variant="h6"
           component="h6"
@@ -105,12 +105,12 @@ const Signup = () => {
             if (!values.cPassword) {
               errors.cPassword = "Required";
             }
-            if(validatePassword(values.password)){
-              errors.password="Password must be at least 6 characters, at most 24 characters, also contain letters, numbers and at least one special character"
-            }
             if (values.cPassword !== values.password) {
               errors.cPassword = "Passwords didn't match";
               errors.password = "Passwords didn't match";
+            }
+            if(!validatePassword(values.password)){
+              errors.password="Password must be at least 6 characters, at most 24 characters, also contain letters, numbers and at least one special character"
             }
             if (values.cPassword == values.password) {
               errors.password = "";
@@ -250,12 +250,16 @@ const Signup = () => {
                     my: "10px",
                   }}
                   variant="contained"
-                  // disabled={
-                  //   !values.userName.length ||
-                  //   !values.email.length ||
-                  //   !values.password.length ||
-                  //   !values.cPassword.length
-                  // }
+                  disabled={
+                    !values.userName.length ||
+                    !values.fullName.length ||
+                    !values.age.length ||
+                    !values.country.length ||
+                    !values.email.length ||
+                    !values.mobileNumber.length ||
+                    !values.password.length ||
+                    !values.cPassword.length
+                  }
                 >
                   Save
                 </Button>
